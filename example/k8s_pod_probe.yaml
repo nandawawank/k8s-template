@@ -1,21 +1,35 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx-finance
+  name: nginx
   # labels are key-value pairs that are used to organize and select groups of objects. 
   # They can be used to identify attributes of objects that are meaningful and relevant to users, 
   # but do not directly imply semantics to the core system.
   labels:
-    team: finance
-    version: 1.0.0
+    team: frontend
     environment: production
   # Annotations are key-value pairs that can be used by external tooling to store and retrieve arbitrary metadata about this object.
   # Annotations are not queryable and should be preserved when modifying objects.
   annotations:
-    description: "This is the nginx pod"
+    description: "This is a sample pod for demonstrating liveness probes."
 spec:
   containers:
     - name: nginx
-      image: nginx:1.20
+      image: nginx:1.21
       ports:
         - containerPort: 80
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits:
+          cpu: 500m
+          memory: 512Mi
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 80
+        initialDelaySeconds: 15
+        periodSeconds: 20
+        successThreshold: 1
+        failureThreshold: 3

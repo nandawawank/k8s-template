@@ -8,6 +8,11 @@ metadata:
   labels:
     key-label1: value-label1
     key-label2: value-label2
+  # Annotations are key-value pairs that can be used by external tooling to store and retrieve arbitrary metadata about this object.
+  # Annotations are not queryable and should be preserved when modifying objects.
+  annotations:
+    key-annotation1: value-annotation1
+    key-annotation2: value-annotation2
 spec:
   containers:
     - name: container-name
