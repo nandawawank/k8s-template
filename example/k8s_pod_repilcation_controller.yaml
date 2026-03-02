@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx-rc
+  labels:
+    replication: nginx
+    version: "1.21"
+  annotations:
+    description: "This is a sample replication controller for demonstrating pod replication."
+spec:
+  replicas: 2
+  selector:
+    environment: production
+  template:
+    metadata:
+      name: nginx
+      labels:
+        environment: production
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.21
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 0
+            periodSeconds: 10
+            failureThreshold: 3
+            successThreshold: 1
+            timeoutSeconds: 1
