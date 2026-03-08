@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-name
+spec:
+  # This selector will match the labels of the pods that this service will route to.
+  selector:
+    label-key1: label-value1
+  # The ports that this service will expose. The port field is the port that the service will listen on, and the targetPort is the port that the pods are listening on.
+  ports:
+    - port: 8080
+      targetPort: 80
