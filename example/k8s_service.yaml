@@ -5,7 +5,7 @@ metadata:
 spec:
   # This selector will match the labels of the pods that this service will route to.
   selector:
-    app: service
+    app: nginx
   # The ports that this service will expose. The port field is the port that the service will listen on, and the targetPort is the port that the pods are listening on.
   ports:
     - port: 8080
